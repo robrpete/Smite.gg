@@ -50,11 +50,19 @@ def gods(request):
     session_id = Session.objects.get(getter_id=1)
     sig = f'{dev_id}getgods{auth_key}{date}'
     sig_hashed = hashlib.md5(sig.encode()).hexdigest()
-    response = God.objects.first().gods
-    # response = requests.get(
-    #     f'https://api.smitegame.com/smiteapi.svc/getgodsjson/{dev_id}/{sig_hashed}/{session_id}/{date}/1').json()
-    # save_response_to_gods = God(gods=response)
-    # save_response_to_gods.save()
+    if day.weekday() == 4 and day.hour == 16 and day.minute == 46:
+        print('once a week, refresh gods')
+        God.objects.all().delete()
+        response = requests.get(
+            f'https://api.smitegame.com/smiteapi.svc/getgodsjson/{dev_id}/{sig_hashed}/{session_id}/{date}/1').json()
+        save_response_to_gods = God(gods=response)
+        save_response_to_gods.save()
+    else:
+        print('not that time')
+        print('day: ', day.weekday(), '\nhour: ',
+              day.hour, '\nmin: ', day.minute)
+        response = God.objects.first().gods
+
     context = {'res': response, 'sess': session_id}
     return render(request, 'smite/gods.html', context)
 
