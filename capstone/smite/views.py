@@ -78,7 +78,13 @@ def items(request):
 
 
 def player(request):
-    return HttpResponse('player')
+    session_id = Session.objects.get(getter_id=1)
+    sig = f'{dev_id}getplayer{auth_key}{date}'
+    sig_hashed = hashlib.md5(sig.encode()).hexdigest()
+    response = requests.get(
+        f'https://api.smitegame.com/smiteapi.svc/getplayerjson/{dev_id}/{sig_hashed}/{session_id}/{date}/MusseII/10').json()
+    context = {'player': response, 'sess': session_id}
+    return render(request, 'smite/player.html', context)
 
 
 def god(request, r_Name):
