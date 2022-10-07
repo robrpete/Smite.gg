@@ -21,3 +21,7 @@ class Session(models.Model):
 
     def __str__(self):
         return self.session_id
+
+
+class God(models.Model):
+    gods = models.JSONField()
