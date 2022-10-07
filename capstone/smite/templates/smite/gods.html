@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'smite/index.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <h4>{{sess}}</h4>
+    {% for r in res %}
+    <a href="{% url 'smite:god' r.id %}">
+    <img src={{r.godIcon_URL}} alt="">
+    <p>{{r.Name}}</p>
+    <p>{{r.Title}}</p><br>
+    </a>
+    {% endfor %}
+</body>
+</html>
