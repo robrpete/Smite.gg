@@ -9,13 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h4>{{sess}}</h4>
-    {% for god in gods %}
-    <a href="{% url 'smite:god' god.Name %}">
-    <img src={{god.godIcon_URL}} alt="">
-    <p>{{god.Name}}</p>
-    <p>{{god.Title}}</p><br>
-    </a>
-    {% endfor %}
+    {{sess}}<hr>
+    {{player}}
 </body>
 </html>

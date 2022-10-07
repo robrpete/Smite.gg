@@ -8,5 +8,5 @@ urlpatterns = [
     path('gods/', views.gods, name='gods'),
     path('items/', views.items, name='items'),
     path('player/', views.player, name='player'),
-    path('god/<int:r_id>/', views.god, name='god'),
+    path('god/<str:r_Name>/', views.god, name='god'),
 ]
