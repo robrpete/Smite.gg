@@ -2,3 +2,13 @@ body{
     color: white;
     background: #071325;
 }
+
+#player_results{
+    display: flex;
+}
+
+#player{
+    display: flex;
+    flex-direction: column;
+}
+

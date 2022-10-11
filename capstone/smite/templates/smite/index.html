@@ -16,5 +16,12 @@
     <h3>{{time}}</h3>
     <h4>{{res}}</h4>
     <p>{{sess}}</p>
+    <form action="{% url 'smite:search_player' %}" method="post">
+        {% csrf_token %}
+        <label for="player">Player Name</label>
+        <input type="text" name="player" id="player"/>
+        <br>
+        <button type="submint">Search Player</button>
+    </form>
 </body>
 </html>
