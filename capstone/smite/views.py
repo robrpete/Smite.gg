@@ -1,3 +1,4 @@
+import asyncio
 from smite.models import Skin, Session, God
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -81,10 +82,17 @@ def search_results(request, player):
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}searchplayers{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
+    players = []
     response = requests.get(
         f'https://api.smitegame.com/smiteapi.svc/searchplayersjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{player}').json()
+    for r in response:
+        sig = f'{dev_id}getplayer{auth_key}{date}'
+        signature_h = hashlib.md5(sig.encode()).hexdigest()
+        p = requests.get(
+            f'https://api.smitegame.com/smiteapi.svc/getplayerjson/{dev_id}/{signature_h}/{session_id}/{date}/{r["player_id"]}').json()
 
-    context = {'player': response, 'sess': session_id}
+        players.append(p[0])
+    context = {'player': players, 'sess': session_id}
     return render(request, 'smite/search_results.html', context)
 
 
@@ -94,8 +102,8 @@ def player(request, player, portal):
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
     response = requests.get(
         f'https://api.smitegame.com/smiteapi.svc/getplayerjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{player}').json()
-    print(player, portal, response)
-    context = {'player': response[0], 'sess': session_id}
+
+    context = {'player': response, 'sess': session_id}
     return render(request, 'smite/player.html', context)
 
 
