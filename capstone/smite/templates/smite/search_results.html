@@ -11,14 +11,14 @@
 <body>
     <div id="player_results">
         {% for p in player %}
-            <div>
+            <a href="{% url 'smite:player'%}" id="player_card">
                 {{p.Name}}
             <ul>
                 <li>{{p.portal_id}}</li>
-                <li>test</li>
-                <li>test hr</li>
+                <li>{{p}}</li>
+                
             </ul>
-            </div>
+        </a>
             <hr>
         {% endfor %}
     </div>
