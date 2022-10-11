@@ -72,16 +72,6 @@ def items(request):
     return render(request, 'smite/items.html', context)
 
 
-def player(request):
-    session_id = Session.objects.get(getter_id=1)
-    signature = f'{dev_id}searchplayers{auth_key}{date}'
-    signature_hashed = hashlib.md5(signature.encode()).hexdigest()
-    response = requests.get(
-        f'https://api.smitegame.com/smiteapi.svc/searchplayersjson/{dev_id}/{signature_hashed}/{session_id}/{date}/DeSeeased').json()
-    context = {'player': response, 'sess': session_id}
-    return render(request, 'smite/player.html', context)
-
-
 def search_player(request):
     player = request.POST.get('player')
     return HttpResponseRedirect(reverse('smite:search_results', args=(player,)))
@@ -96,6 +86,17 @@ def search_results(request, player):
 
     context = {'player': response, 'sess': session_id}
     return render(request, 'smite/search_results.html', context)
+
+
+def player(request, player, portal):
+    session_id = Session.objects.get(getter_id=1)
+    signature = f'{dev_id}getplayer{auth_key}{date}'
+    signature_hashed = hashlib.md5(signature.encode()).hexdigest()
+    response = requests.get(
+        f'https://api.smitegame.com/smiteapi.svc/getplayerjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{player}').json()
+    print(player, portal, response)
+    context = {'player': response[0], 'sess': session_id}
+    return render(request, 'smite/player.html', context)
 
 
 def god(request, r_Name):
