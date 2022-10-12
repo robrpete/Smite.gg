@@ -15,5 +15,13 @@
     {{sess}}
     <hr>
     {{player}}
+    <hr>
+    {% for match in history %}
+        <a href="{% url 'smite:get_match' match=match.Match %}">
+            <h4>{{match.Match_Time}}</h4>
+            <h4>{{match.God}}</h4>
+            {{match}}<hr>
+        </a>
+    {% endfor %}
 </body>
 </html>

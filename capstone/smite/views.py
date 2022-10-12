@@ -103,8 +103,25 @@ def player(request, player, name):
     response = requests.get(
         f'https://api.smitegame.com/smiteapi.svc/getplayerjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{player}').json()
 
-    context = {'player': response[0], 'sess': session_id}
+    signature = f'{dev_id}getmatchhistory{auth_key}{date}'
+    signature_h = hashlib.md5(signature.encode()).hexdigest()
+    response_history = requests.get(
+        f'https://api.smitegame.com/smiteapi.svc/getmatchhistoryjson/{dev_id}/{signature_h}/{session_id}/{date}/{player}').json()
+
+    context = {'player': response[0],
+               'history': response_history, 'sess': session_id}
     return render(request, 'smite/player.html', context)
+
+
+def get_match(request, match):
+    session_id = Session.objects.get(getter_id=1)
+    signature = f'{dev_id}getmatchdetails{auth_key}{date}'
+    signature_hashed = hashlib.md5(signature.encode()).hexdigest()
+    response = requests.get(
+        f'https://api.smitegame.com/smiteapi.svc/getmatchdetailsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{match}').json()
+
+    context = {'match': response, 'sess': session_id}
+    return render(request, 'smite/match.html', context)
 
 
 def god(request, r_Name):
