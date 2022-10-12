@@ -14,8 +14,8 @@
             <a href="{% url 'smite:player' player=p.Id name=p.Name %}" id="player_card">
                 {{p.Name}}
                 <ul>
-                    <li>{{p.HoursPlayed}}</li>
                     <li>{{p.Platform}}</li>
+                    <li>{{p.HoursPlayed}}</li>
                     <li>{{p.Last_Login_Datetime}}</li>
                 </ul>
                 {{p}}

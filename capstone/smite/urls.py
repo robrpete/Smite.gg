@@ -13,4 +13,5 @@ urlpatterns = [
     path('search_results/<str:player>/',
          views.search_results, name='search_results'),
     path('god/<str:r_Name>/', views.god, name='god'),
+    path('checkapi/', views.check, name='check_api'),
 ]

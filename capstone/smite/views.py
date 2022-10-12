@@ -103,7 +103,7 @@ def player(request, player, name):
     response = requests.get(
         f'https://api.smitegame.com/smiteapi.svc/getplayerjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{player}').json()
 
-    context = {'player': response, 'sess': session_id}
+    context = {'player': response[0], 'sess': session_id}
     return render(request, 'smite/player.html', context)
 
 
@@ -116,3 +116,14 @@ def god(request, r_Name):
             god = g
     context = {'res': gods[0], 'sess': session_id, 'god': god}
     return render(request, 'smite/god.html', context)
+
+
+def check(request):
+    session_id = Session.objects.get(getter_id=1)
+    signature = f'{dev_id}getdataused{auth_key}{date}'
+    signature_hashed = hashlib.md5(signature.encode()).hexdigest()
+    response = requests.get(
+        f'https://api.smitegame.com/smiteapi.svc/getdatausedjson/{dev_id}/{signature_hashed}/{session_id}/{date}').json()
+
+    context = {'res': response[0], 'sess': session_id}
+    return render(request, 'smite/checkapi.html', context)

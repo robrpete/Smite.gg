@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'smite/index.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        active sessions: {{res.Active_Sessions}}<br/>
+        concurrent sessions: {{res.Concurrent_Sessions}}<br/>
+        request limit daily: {{res.Request_Limit_Daily}}<br/>
+        session cap: {{res.Session_Cap}}<br/>
+        session time limit: {{res.Session_Time_Limit}}<br/>
+        total request today: {{res.Total_Requests_Today}}<br/>
+        sessions today: {{res.Total_Sessions_Today}}<br/>
+        ret_msg: {{res.ret_msg}}<br/>
+    </div>
+</body>
+</html>
