@@ -96,7 +96,7 @@ def search_results(request, player):
     return render(request, 'smite/search_results.html', context)
 
 
-def player(request, player, portal):
+def player(request, player, name):
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getplayer{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()

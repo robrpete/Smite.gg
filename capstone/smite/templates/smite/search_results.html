@@ -11,7 +11,7 @@
 <body>
     <div id="player_results">
         {% for p in player %}
-            <a href="" id="player_card">
+            <a href="{% url 'smite:player' player=p.Id name=p.Name %}" id="player_card">
                 {{p.Name}}
                 <ul>
                     <li>{{p.HoursPlayed}}</li>
