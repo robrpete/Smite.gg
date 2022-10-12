@@ -20,3 +20,27 @@ body{
     color: white;
 }
 
+#gods{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.god{
+    background: #050D1A;
+    height: fit-content;
+    width: fit-content;
+    padding: 1em;
+    border-radius: 1em;
+    border: 1px solid #49422B;
+}
+
+.god img{
+    border-radius: 1em;
+    height: 18em;
+    width: 14em;
+    object-fit: contain;
+}
+
+.pros{
+    font-size: x-small;
+}
