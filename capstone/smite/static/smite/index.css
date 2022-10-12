@@ -2,3 +2,45 @@ body{
     color: white;
     background: #071325;
 }
+
+#player_results{
+    display: flex;
+}
+
+#player{
+    display: flex;
+    flex-direction: column;
+}
+
+#player_card{
+    background: rgba(255, 255, 255, 0.233);
+    padding: 0.5em;
+    border-radius: 1em;
+    border: 1px solid white;
+    color: white;
+}
+
+#gods{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.god{
+    background: #050D1A;
+    height: fit-content;
+    width: fit-content;
+    padding: 1em;
+    border-radius: 1em;
+    border: 1px solid #49422B;
+}
+
+.god img{
+    border-radius: 1em;
+    height: 18em;
+    width: 14em;
+    object-fit: contain;
+}
+
+.pros{
+    font-size: x-small;
+}

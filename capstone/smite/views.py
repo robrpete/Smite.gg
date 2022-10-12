@@ -1,7 +1,8 @@
-from urllib import response
+import asyncio
 from smite.models import Skin, Session, God
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from datetime import datetime
 import requests
 import hashlib
@@ -38,7 +39,6 @@ def index(request):
     else:
         response = test_response
 
-    print(test_response, response)
     context = {'dev': dev_id, 'auth': auth_key,
                'hashed': signature_hashed, 'time': date, 'res': response, 'sess': session_id}
     return render(request, 'smite/index.html', context)
@@ -51,16 +51,12 @@ def gods(request):
     signature = f'{dev_id}getgods{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
     if day.weekday() == 4 and day.hour == 16 and day.minute == 46:
-        print('once a week, refresh gods')
         God.objects.all().delete()
         response = requests.get(
             f'https://api.smitegame.com/smiteapi.svc/getgodsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/1').json()
         save_response_to_gods = God(gods=response)
         save_response_to_gods.save()
     else:
-        print('not that time')
-        print('day: ', day.weekday(), '\nhour: ',
-              day.hour, '\nmin: ', day.minute)
         response = God.objects.first().gods
 
     context = {'gods': response, 'sess': session_id}
@@ -77,14 +73,55 @@ def items(request):
     return render(request, 'smite/items.html', context)
 
 
-def player(request):
+def search_player(request):
+    player = request.POST.get('player')
+    return HttpResponseRedirect(reverse('smite:search_results', args=(player,)))
+
+
+def search_results(request, player):
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}searchplayers{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
+    players = []
     response = requests.get(
-        f'https://api.smitegame.com/smiteapi.svc/searchplayersjson/{dev_id}/{signature_hashed}/{session_id}/{date}/DeSeeased').json()
-    context = {'player': response, 'sess': session_id}
+        f'https://api.smitegame.com/smiteapi.svc/searchplayersjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{player}').json()
+    for r in response:
+        sig = f'{dev_id}getplayer{auth_key}{date}'
+        signature_h = hashlib.md5(sig.encode()).hexdigest()
+        p = requests.get(
+            f'https://api.smitegame.com/smiteapi.svc/getplayerjson/{dev_id}/{signature_h}/{session_id}/{date}/{r["player_id"]}').json()
+
+        players.append(p[0])
+    context = {'player': players, 'sess': session_id}
+    return render(request, 'smite/search_results.html', context)
+
+
+def player(request, player, name):
+    session_id = Session.objects.get(getter_id=1)
+    signature = f'{dev_id}getplayer{auth_key}{date}'
+    signature_hashed = hashlib.md5(signature.encode()).hexdigest()
+    response = requests.get(
+        f'https://api.smitegame.com/smiteapi.svc/getplayerjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{player}').json()
+
+    signature = f'{dev_id}getmatchhistory{auth_key}{date}'
+    signature_h = hashlib.md5(signature.encode()).hexdigest()
+    response_history = requests.get(
+        f'https://api.smitegame.com/smiteapi.svc/getmatchhistoryjson/{dev_id}/{signature_h}/{session_id}/{date}/{player}').json()
+
+    context = {'player': response[0],
+               'history': response_history, 'sess': session_id}
     return render(request, 'smite/player.html', context)
+
+
+def get_match(request, match):
+    session_id = Session.objects.get(getter_id=1)
+    signature = f'{dev_id}getmatchdetails{auth_key}{date}'
+    signature_hashed = hashlib.md5(signature.encode()).hexdigest()
+    response = requests.get(
+        f'https://api.smitegame.com/smiteapi.svc/getmatchdetailsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{match}').json()
+
+    context = {'match': response, 'sess': session_id}
+    return render(request, 'smite/match.html', context)
 
 
 def god(request, r_Name):
@@ -96,3 +133,14 @@ def god(request, r_Name):
             god = g
     context = {'res': gods[0], 'sess': session_id, 'god': god}
     return render(request, 'smite/god.html', context)
+
+
+def check(request):
+    session_id = Session.objects.get(getter_id=1)
+    signature = f'{dev_id}getdataused{auth_key}{date}'
+    signature_hashed = hashlib.md5(signature.encode()).hexdigest()
+    response = requests.get(
+        f'https://api.smitegame.com/smiteapi.svc/getdatausedjson/{dev_id}/{signature_hashed}/{session_id}/{date}').json()
+
+    context = {'res': response[0], 'sess': session_id}
+    return render(request, 'smite/checkapi.html', context)

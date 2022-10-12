@@ -1,20 +1,23 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'smite/index.css' %}">
-    <title>Document</title>
-</head>
-<body>
-    <p>Smite index test session</p>
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Smite{% endblock %}
+
+{% block content %}
+<p>Smite index test session</p>
     <h1>{{dev}}</h1>
     <h1>{{auth}}</h1>
     <h2>{{hashed}}</h2>
     <h3>{{time}}</h3>
     <h4>{{res}}</h4>
     <p>{{sess}}</p>
-</body>
-</html>
+    <form action="{% url 'smite:search_player' %}" method="post">
+        {% csrf_token %}
+        <label for="player">Player Name</label>
+        <input type="text" name="player" id="player"/>
+        <br>
+        <button type="submint">Search Player</button>
+    </form>
+{% endblock %}
