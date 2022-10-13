@@ -1,38 +1,33 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <link rel="stylesheet" href="{% static 'smite/index.css' %}">
-    <title>Document</title>
-</head>
-<body>
-    <h4>{{sess}}</h4>
-    <div id="gods">
-        <div v-for="god in gods">
-            <div class="god">
-                <img :src="god.godCard_URL" alt="">
-                <p>[[god.Name]]</p>
-                <p>[[god.Title]]</p><hr>
-                <p class="pros">[[god.Pros]]</p>
-            </div>
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Smite{% endblock %}
+
+{% block content %}
+<h4>{{sess}}</h4>
+<div id="gods">
+    <div v-for="god in gods">
+        <div class="god">
+            <img :src="god.godCard_URL" alt="">
+            <p>[[god.Name]]</p>
+            <p>[[god.Title]]</p><hr>
+            <p class="pros">[[god.Pros]]</p>
         </div>
     </div>
+</div>
 
-    {{ gods|json_script:'all-gods' }}
-    <script>
+{{ gods|json_script:'all-gods' }}
+<script>
 
-        const getGods = JSON.parse(document.getElementById('all-gods').textContent)
-        new Vue({
-            el: "#gods",
-            delimiters: ['[[',']]'],
-            data: {
-                gods: getGods,
-            }
-        })
-    </script>
-</body>
-</html>
+    const getGods = JSON.parse(document.getElementById('all-gods').textContent)
+    new Vue({
+        el: "#gods",
+        delimiters: ['[[',']]'],
+        data: {
+            gods: getGods,
+        }
+    })
+</script>
+{% endblock %}

@@ -1,2 +1,4 @@
 package-lock.json
 hide.json
+venv
+node_modules

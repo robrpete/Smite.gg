@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="{% static 'smite/index.css' %}">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <title>{% block title %}Smite.io{% endblock %}</title>
 </head>
 <body>
@@ -14,9 +15,9 @@
       </h1>
     </div>
     <div id="links">
-        <a href="">home</a>
-        <a href="">gods</a>
-        <a href="">items</a>
+        <a href="{% url 'smite:index' %}">home</a>
+        <a href="{% url 'smite:gods' %}">gods</a>
+        <a href="{% url 'smite:items' %}">items</a>
     </div>
   </nav>
   <main>
