@@ -10,10 +10,18 @@
     <h4>ITEMS</h4>
 </div>
 <div id="items">
-    <h4>{{sess}}</h4>
     {% for r in res %}
-    <img src={{r.itemIcon_URL}} alt="">
-    <p>{{r.DeviceName}}</p>
+        {% if r.DeviceName not in test_img %}
+        <a class="item_link" :href=`#`>
+        <div class="item" >
+            <img src="{{r.itemIcon_URL}}" alt="">
+            <div class="item-details">
+            <div class="item-details-name">{{r.DeviceName}}</div>
+            <div class="item-details-title"></div>
+            </div>
+        </div>
+    </a>
+    {% endif %}
     {% endfor %}
 </div>
 {% endblock %}
