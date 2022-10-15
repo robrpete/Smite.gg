@@ -68,6 +68,10 @@ footer{
     color: white;
 }
 
+/* ##################################################
+################   gods.html      ##################
+################################################## */
+
 #gods{
     display: flex;
     flex-wrap: wrap;
@@ -152,7 +156,7 @@ footer{
 }
 
 .pros{
-    font-size: x-small;
+    font-size: small;
     padding-bottom: 0.25rem;
     margin-top: 0.25em;
 }

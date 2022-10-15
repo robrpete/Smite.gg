@@ -31,6 +31,7 @@ def index(request):
         signature_hashed = hashlib.md5(signature.encode()).hexdigest()
         response = requests.get(
             f'https://api.smitegame.com/smiteapi.svc/createsessionjson/{dev_id}/{signature_hashed}/{date}').json()
+
         Session.objects.all().delete()
         sess = Session(getter_id=1, session_id=response['session_id'])
         sess.save()

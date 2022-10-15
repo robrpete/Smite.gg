@@ -18,7 +18,7 @@
             <form action="{% url 'smite:search_player' %}" method="post">
                 {% csrf_token %}
                 
-                <input type="text" name="player" id="player" autocomplete="off" placeholder="Player Name"/>
+                <input type="text" name="player" id="player" placeholder="Player Name"/>
                 
                 <button type="submint">Search</button>
                 

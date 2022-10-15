@@ -1,15 +1,12 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'smite/index.css' %}">
-    <title>Document</title>
-</head>
-<body>
-    {{player.Name}}<br/>
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Smite{% endblock %}
+
+{% block content %}
+{{player.Name}}<br/>
     {{player.HoursPlayed}}<br/>
     {{player.Last_Login_Datetime}}<hr>
     {{sess}}
@@ -23,5 +20,4 @@
             {{match}}<hr>
         </a>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
