@@ -225,6 +225,59 @@ footer{
 ################################################## */
 
 
+
+.index-background{
+    height: 100%;
+    background: url('https://www.f2p.com/wp-content/uploads/2014/05/SMITE-wallpaper-1.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.index-background-filter{
+    height: 100%;
+    background: linear-gradient(to bottom, #4f596321, #05111e25);
+}
+
+.form-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1em;
+}
+
+.form-container form{
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    border-radius: 1em;
+}
+
+.index input{
+    width: 60%;
+    height: 2em;
+    border-radius: 1em;
+    border: none;
+    padding-left: 1em;
+    border-style: none;
+    outline-width: 0;
+}
+
+.index form button{
+    height: 2em;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border-style: none;
+    padding: 0.25em;
+    background: #1e304b44;
+    cursor: pointer;
+}
+
+
+
+/* ##################################################
+################   nav      ##################
+################################################## */
+
+
 .header{
     position: sticky;
     top: 0;
@@ -351,3 +404,9 @@ footer{
     height: 16rem;
     width: 12rem;
 }
+
+/* https://cdn.wallpapersafari.com/32/53/dzLrGv.png
+https://cdn.wallpapersafari.com/47/87/CwZjQe.png
+https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/47cdae35-f2aa-492c-9d0c-b3d95677e89c/d8cm0tj-f6e95584-b71b-4fe0-bdbe-6a52c2700c6c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQ3Y2RhZTM1LWYyYWEtNDkyYy05ZDBjLWIzZDk1Njc3ZTg5Y1wvZDhjbTB0ai1mNmU5NTU4NC1iNzFiLTRmZTAtYmRiZS02YTUyYzI3MDBjNmMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.h4acYBlyzPRh2RcDnn1ho3ZGCGVzFSqSWGfsd2XpKkA
+https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700801479.jpg
+https://browsecat.net/sites/default/files/smite-wallpapers-79945-791176-7909606.png */
