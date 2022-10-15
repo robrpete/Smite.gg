@@ -122,8 +122,8 @@ def get_match(request, match):
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
     response = requests.get(
         f'https://api.smitegame.com/smiteapi.svc/getmatchdetailsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{match}').json()
-
-    context = {'match': response, 'sess': session_id}
+    match_id = match
+    context = {'match': response, 'match_id': match_id, 'sess': session_id}
     return render(request, 'smite/match.html', context)
 
 

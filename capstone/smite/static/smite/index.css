@@ -203,6 +203,7 @@ footer{
 
 .search_results_players{
     background: rgba(56, 53, 53, 0.521);
+    border-radius: 1em;
 }
 
 
@@ -361,7 +362,8 @@ footer{
 }
 
 .nav-link:hover{
-    color: rgba(255, 255, 0, 0.616);
+    color: #49422B;
+    -webkit-text-stroke: 0.2px white;
 }
 
 .nav-logo {

@@ -7,10 +7,13 @@
 
 {% block content %}
 <div>
+    <h1>Match</h1>
+    <p>match id: {{match_id}}</p><br>
     {% for m in match %}
-    {{m.hz_gamer_tag}}
-    {{m.Deaths}}
-    {{m.Kills_Player}}<br/>
+    {{m.Match_Queue_Id}}
+    {{m.playerName}}:
+    Kills: {{m.Kills_Player}}
+    Deaths: {{m.Deaths}}<br/>
     {% endfor %}
     </div>
 {% endblock %}
