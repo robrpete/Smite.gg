@@ -1,29 +1,32 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'smite/index.css' %}">
-    <title>Document</title>
-</head>
-<body>
-    <div id="player_results">
-        {% for p in player %}
-            <a href="{% url 'smite:player' player=p.Id name=p.Name %}" id="player_card">
-                {{p.Name}}
-                <ul>
-                    <li>{{p.Platform}}</li>
-                    <li>{{p.HoursPlayed}}</li>
-                    <li>{{p.Last_Login_Datetime}}</li>
-                </ul>
-                {{p}}
+{% extends 'base.html' %}
+{% load static %}
 
-           
-        </a>
-            <hr>
-        {% endfor %}
-    </div>
-</body>
-</html>
+
+{% block title %}Smite{% endblock %}
+
+{% block content %}
+<div class="page-title">
+    <h4>{{name}} Player Results</h4>
+</div>
+<div id="player_results">
+    <div id="gods">
+        {% for p in player %}
+            <div>
+                <div class="player-results" >
+                    <a href="{% url 'smite:player' player=p.Id name=p.Name %}" id="player_card">
+                        {{p.Name}}
+                        <ul class="player-result-list">
+                            <li>{{p.Platform}}</li>
+                            <li>{{p.HoursPlayed}}</li>
+                            <li>{{p.Last_Login_Datetime}}</li>
+                        </ul>
+            
+                   
+                </a>
+                </div>
+            </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}
