@@ -10,16 +10,16 @@
     <h4>{{name}} Player Results</h4>
 </div>
 <div id="player_results">
-    <div id="gods">
+    <div id="gods" class="search_results_players">
         {% for p in player %}
             <div>
                 <div class="player-results" >
                     <a href="{% url 'smite:player' player=p.Id name=p.Name %}" id="player_card">
                         {{p.Name}}
                         <ul class="player-result-list">
-                            <li>{{p.Platform}}</li>
-                            <li>{{p.HoursPlayed}}</li>
-                            <li>{{p.Last_Login_Datetime}}</li>
+                            <li>Platform: {{p.Platform}}</li>
+                            <li>Hours: {{p.HoursPlayed}}</li>
+                            <li>Last Seen: {{p.Last_Login_Datetime}}</li>
                         </ul>
             
                    

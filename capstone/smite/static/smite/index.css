@@ -190,8 +190,12 @@ footer{
 }
 
 .player-results:hover{
-    transform: scale3d(1.3,1.3,1);
+    transform: scale3d(1.1,1.1,1);
     z-index: 2;
+}
+
+.search_results_players{
+    background: rgb(56, 53, 53);
 }
 
 
