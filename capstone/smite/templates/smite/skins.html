@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Smite{% endblock %}
+
+{% block content %}
+<div class="page-title">
+    <h4>{{name}} Skins</h4>
+</div>
+<div id="gods">
+    {% for skin in skins %}
+        {% if skin.skin_name not in skin_list %}
+        <div>
+            <div class="god" >
+                <img src="{{skin.godSkin_URL}}" alt="">
+                <div class="god-details">
+                <div class="god-details-name">{{skin.skin_name}}</div>
+                <div class="god-details-title">{{skin.obtainability}}</div>
+            </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+
+</script>
+{% endblock %}

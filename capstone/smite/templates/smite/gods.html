@@ -6,15 +6,21 @@
 {% block title %}Smite{% endblock %}
 
 {% block content %}
-<h4>{{sess}}</h4>
+<div class="page-title">
+    <h4>GODS</h4>
+</div>
 <div id="gods">
     <div v-for="god in gods">
-        <div class="god">
+        <a class="god_link" :href=`/smite/skins/${god.Name}/${god.id}/`>
+        <div class="god" >
             <img :src="god.godCard_URL" alt="">
-            <p>[[god.Name]]</p>
-            <p>[[god.Title]]</p><hr>
-            <p class="pros">[[god.Pros]]</p>
+            <div class="god-details">
+            <div class="god-details-name">[[god.Name]]</div>
+            <div class="god-details-title">[[god.Title]]</div>
+            <p class="pros">[[god.Roles]] [[god.Type]]</p>
         </div>
+        </div>
+    </a>
     </div>
 </div>
 

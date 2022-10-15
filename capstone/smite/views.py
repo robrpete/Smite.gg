@@ -144,3 +144,15 @@ def check(request):
 
     context = {'res': response[0], 'sess': session_id}
     return render(request, 'smite/checkapi.html', context)
+
+
+def skins(request, name, id):
+    session_id = Session.objects.get(getter_id=1)
+    signature = f'{dev_id}getgodskins{auth_key}{date}'
+    signature_hashed = hashlib.md5(signature.encode()).hexdigest()
+    response = requests.get(
+        f'https://api.smitegame.com/smiteapi.svc/getgodskinsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{id}/1').json()
+    skin_list_exclude = ['Diamond', 'Legendary',
+                         'Shadow', 'Happy Little Painter']
+    context = {'skins': response, 'name': name, 'skin_list': skin_list_exclude}
+    return render(request, 'smite/skins.html', context)
