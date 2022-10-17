@@ -7,23 +7,44 @@
 
 {% block content %}
 <div class="page-title">
-    <h4>Match id: {{match_id}}</h4>
+    <h4>Match</h4>
+</div>
+<div class="match_id">
+<h5>Id: {{match_id}}</h5>
 </div>
 <div class="match_stats_container">
     <div class="stats_container">
-    <div class="match_stats">
-        <div class="match_stats_first_box">Player</div>
-        <div  class="match_stats_middle_box">God</div>
-        <div  class="match_stats_middle_box">KDA</div>
-        <div class="match_stats_last_box">Deaths</div>
+    <div class="match_title">
+        <div class="match_player_div">Player</div>
+        <div class="match_player_god">God</div>
+        <div class="match_player_kda">KDA</div>
+        <div class="match_player_s">Gold</div>
     </div>
     {% for m in match %}
-        <div class="match_stats_player">
-            <div class="match_stats_first_box_player">{{m.playerName}}</div>
-            <div  class="match_stats_middle_box_player">God</div>
-            <div  class="match_stats_middle_box_player">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
-            <div class="match_stats_last_box_player">Deaths</div>
-        </div>
+        {% if m.TaskForce == 1 %}
+            <div class="match_team_1">
+                {% if m.playerName != null %}
+                <div class="player_div">{{m.playerName}}</div>
+                <div class="player_god">{{m.Reference_Name}}</div>
+                <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
+                <div class="player_s">{{m.Gold_Earned}}</div>
+                {% else %}
+                <div class="player">private</div>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if m.TaskForce == 2 %}
+            <div class="match_team_2">
+                {% if m.playerName != null %}
+                <div class="player_div">{{m.playerName}}</div>
+                <div class="player_god">{{m.Reference_Name}}</div>
+                <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
+                <div class="player_s">{{m.Gold_Earned}}</div>
+                {% else %}
+                <div class="player">private</div>
+                {% endif %}
+            </div>
+        {% endif %}
     {% endfor %}
 </div>
 </div>

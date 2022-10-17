@@ -536,8 +536,10 @@ footer{
 ################################################## */
 
 
-.match_page_title{
-    margin-top: 2rem;
+.match_id{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .match_stats_container{
@@ -547,75 +549,112 @@ footer{
     margin: 0 auto;
     max-width: 78rem;
     padding-bottom: 3rem;
-    width: 100%;
+    width: 90%;
 }
 
 .stats_container{
     width: fit-content;
+    border: 1px solid #a78310;
+    border-top-left-radius: 1em ;
+    border-top-right-radius: 1em ;
 }
 
-.match_stats{
-    display: flex;
-    justify-content: center;
+.match_title{
     background: #49422B;
-    border-top-left-radius: 1em;
-    border-top-right-radius: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    border-top-left-radius: 1em ;
+    border-top-right-radius: 1em ;
 }
 
-.match_stats_first_box{
-    border-top-left-radius: 1em;
-    padding-top: 0.8rem;
-    padding-left: 0.5rem;
-    padding-right: 1rem;
-}
-
-.match_stats_last_box{
-    border-top-right-radius: 1em;
-    padding-top: 0.8rem;
-    padding-left: 1rem;
-    padding-right: 0.5rem;
-}
-
-.match_stats_middle_box{
-    padding-top: 0.8rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-bottom: 0.5rem;
-}
-
-.match_stats_player{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    background: #49422B;
-}
-
-.match_stats_first_box_player{
-    padding-top: 0.8rem;
-    padding-left: 0.5rem;
-    padding-right: 1rem;
-    color: black;
-    white-space: nowrap; 
-    width: 50px; 
+.match_player_div{
     overflow: hidden;
-    text-overflow: clip; 
-    border: 1px solid #000000;
+    white-space: nowrap;
+    text-overflow: clip;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+    border-top-left-radius: 1em ;
+    padding-left: 0.5em;
 }
 
-.match_stats_last_box_player{
-    padding-top: 0.8rem;
-    padding-left: 1rem;
-    padding-right: 0.5rem;
+.match_player_god{
+    grid-row: 1/2;
+    grid-column: 2/3;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
 }
 
-.match_stats_middle_box_player{
-    padding-top: 0.8rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-bottom: 0.5rem;
+.match_player_kda{
+    grid-row: 1/2;
+    grid-column: 3/4;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+}
+
+.match_player_s{
+    grid-row: 1/2;
+    grid-column: 4/5;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+    border-top-right-radius: 1em ;
+}
+
+.match_team_1{
+    background: rgba(255, 0, 0, 0.288);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
 }
 
 
+
+.match_team_2{
+    background: rgba(0, 128, 0, 0.301);
+    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.player_div{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    border-top: 1px solid #050D1A;
+    border-left: 1px solid #050D1A;
+    border-bottom: 1px solid #050D1A;
+    padding: 0.2em;
+}
+
+.player_god{
+    grid-row: 1/2;
+    grid-column: 2/3;
+    border-top: 1px solid #050D1A;
+    border-bottom: 1px solid #050D1A;
+    padding: 0.2em;
+}
+
+.player_kda{
+    grid-row: 1/2;
+    grid-column: 3/4;
+    border-top: 1px solid #050D1A;
+    border-bottom: 1px solid #050D1A;
+    padding: 0.2em;
+}
+
+.player_s{
+    grid-row: 1/2;
+    grid-column: 4/5;
+    border-top: 1px solid #050D1A;
+    border-right: 1px solid #050D1A;
+    border-bottom: 1px solid #050D1A;
+    padding: 0.2em;
+}
 
 /* https://cdn.wallpapersafari.com/32/53/dzLrGv.png
 https://cdn.wallpapersafari.com/47/87/CwZjQe.png
