@@ -6,14 +6,26 @@
 {% block title %}Smite{% endblock %}
 
 {% block content %}
-<div>
-    <h1>Match</h1>
-    <p>match id: {{match_id}}</p><br>
-    {% for m in match %}
-    {{m.Match_Queue_Id}}
-    {{m.playerName}}:
-    Kills: {{m.Kills_Player}}
-    Deaths: {{m.Deaths}}<br/>
-    {% endfor %}
+<div class="page-title">
+    <h4>Match id: {{match_id}}</h4>
+</div>
+<div class="match_stats_container">
+    <div class="stats_container">
+    <div class="match_stats">
+        <div class="match_stats_first_box">Player</div>
+        <div  class="match_stats_middle_box">God</div>
+        <div  class="match_stats_middle_box">KDA</div>
+        <div class="match_stats_last_box">Deaths</div>
     </div>
+    {% for m in match %}
+        <div class="match_stats_player">
+            <div class="match_stats_first_box_player">{{m.playerName}}</div>
+            <div  class="match_stats_middle_box_player">God</div>
+            <div  class="match_stats_middle_box_player">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
+            <div class="match_stats_last_box_player">Deaths</div>
+        </div>
+    {% endfor %}
+</div>
+</div>
 {% endblock %}
+

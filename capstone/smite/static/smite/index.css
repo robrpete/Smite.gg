@@ -296,7 +296,7 @@ footer{
     border-bottom-right-radius: 1em;
     border-style: none;
     padding: 0.4em;
-    background: #1e304b44;
+    background: white;
     cursor: pointer;
 }
 
@@ -528,6 +528,94 @@ footer{
     height: 16rem;
     width: 12rem;
 }
+
+
+
+/* ##################################################
+################   match.html      ##################
+################################################## */
+
+
+.match_page_title{
+    margin-top: 2rem;
+}
+
+.match_stats_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 78rem;
+    padding-bottom: 3rem;
+    width: 100%;
+}
+
+.stats_container{
+    width: fit-content;
+}
+
+.match_stats{
+    display: flex;
+    justify-content: center;
+    background: #49422B;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+
+.match_stats_first_box{
+    border-top-left-radius: 1em;
+    padding-top: 0.8rem;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+}
+
+.match_stats_last_box{
+    border-top-right-radius: 1em;
+    padding-top: 0.8rem;
+    padding-left: 1rem;
+    padding-right: 0.5rem;
+}
+
+.match_stats_middle_box{
+    padding-top: 0.8rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 0.5rem;
+}
+
+.match_stats_player{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: #49422B;
+}
+
+.match_stats_first_box_player{
+    padding-top: 0.8rem;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+    color: black;
+    white-space: nowrap; 
+    width: 50px; 
+    overflow: hidden;
+    text-overflow: clip; 
+    border: 1px solid #000000;
+}
+
+.match_stats_last_box_player{
+    padding-top: 0.8rem;
+    padding-left: 1rem;
+    padding-right: 0.5rem;
+}
+
+.match_stats_middle_box_player{
+    padding-top: 0.8rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 0.5rem;
+}
+
+
 
 /* https://cdn.wallpapersafari.com/32/53/dzLrGv.png
 https://cdn.wallpapersafari.com/47/87/CwZjQe.png
