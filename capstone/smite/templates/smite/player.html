@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="page-title">
-    <h4>{{player.Name}}</h4>
+    <h4>{{name}}</h4>
 </div>
 <div class="match_stats_container">
     <div class="player_stats">
@@ -20,6 +20,17 @@
             <div class="history_title_1">{{player.HoursPlayed}}</div>
             <div class="history_title_2">{{player.Level}}</div>
             <div class="history_title_3">{{player.Last_Login_Datetime}}</div>
+            
+        </div>
+        <div class="history_title_two">
+            <div class="match_player_div">Platform</div>
+            <div class="match_player_god">Ranked Conquest</div>
+            <div class="match_player_kda">Ranked Joust</div>
+        </div>
+        <div class="history_detail_end">
+            <div class="history_title_1">{{player.Platform}}</div>
+            <div class="history_title_2">{{cmmr}}</div>
+            <div class="history_title_3">{{jmmr}}</div>
             
         </div>
     </div>
@@ -38,7 +49,7 @@
                     <div class="history_mode">Mode</div>
                     <div class="history_kda">K/D</div>
                 </div>
-                <div class="history_detail">
+                <div class="history_detail_end">
                     <div class="history_title_1">{{match.God}}</div>
                     <div class="history_title_2">{{match.Map_Game}}</div>
                     <div class="history_title_3">{{match.Kills}}/{{match.Deaths}}</div>

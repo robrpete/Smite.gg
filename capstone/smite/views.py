@@ -52,12 +52,13 @@ def gods(request):
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getgods{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
-    if day.weekday() == 1 and day.hour == 00 and day.minute == 46:
+    if day.weekday() == 1 and day.hour == 14 and day.minute == 31:
         God.objects.all().delete()
         response = requests.get(
             f'https://api.smitegame.com/smiteapi.svc/getgodsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/1').json()
         save_response_to_gods = God(gods=response)
         save_response_to_gods.save()
+        print('updated gods')
     else:
         response = God.objects.first().gods
         print('gods from database')
@@ -115,9 +116,12 @@ def player(request, player, name):
     signature_h = hashlib.md5(signature.encode()).hexdigest()
     response_history = requests.get(
         f'https://api.smitegame.com/smiteapi.svc/getmatchhistoryjson/{dev_id}/{signature_h}/{session_id}/{date}/{player}').json()
-
+    conquest_mmr = int(response[0]['Rank_Stat_Conquest_Controller'])
+    joust_mmr = int(response[0]['Rank_Stat_Joust_Controller'])
+    player_name = response[0]['Name']
+    player_name = player_name.partition(']')[2]
     context = {'player': response[0],
-               'history': response_history, 'sess': session_id}
+               'history': response_history, 'name': player_name, 'jmmr': joust_mmr, 'cmmr': conquest_mmr, 'sess': session_id}
     return render(request, 'smite/player.html', context)
 
 

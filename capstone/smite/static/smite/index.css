@@ -119,6 +119,13 @@ footer{
     border-top-right-radius: 1em ;
 }
 
+.history_title_two{
+    background: #49422B;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
 .history_god{
     overflow: hidden;
     white-space: nowrap;
@@ -146,6 +153,13 @@ footer{
 }
 
 .history_detail{
+    background: rgba(255, 0, 0, 0.288);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.history_detail_end{
     background: rgba(255, 0, 0, 0.288);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
