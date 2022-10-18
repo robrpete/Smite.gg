@@ -18,7 +18,7 @@
         <div class="match_player_div">Player</div>
         <div class="match_player_god">God</div>
         <div class="match_player_kda">KDA</div>
-        <div class="match_player_s">Gold</div>
+        <div class="match_player_s">Damage</div>
     </div>
     {% for m in match %}
         {% if m.TaskForce == 1 %}
@@ -27,7 +27,7 @@
                 <div class="player_div">{{m.playerName}}</div>
                 <div class="player_god">{{m.Reference_Name}}</div>
                 <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
-                <div class="player_s">{{m.Gold_Earned}}</div>
+                <div class="player_s">{{m.Damage_Player}}</div>
                 {% else %}
                 <div class="player">private</div>
                 {% endif %}
@@ -39,7 +39,7 @@
                 <div class="player_div">{{m.playerName}}</div>
                 <div class="player_god">{{m.Reference_Name}}</div>
                 <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
-                <div class="player_s">{{m.Gold_Earned}}</div>
+                <div class="player_s">{{m.Damage_Player}}</div>
                 {% else %}
                 <div class="player">private</div>
                 {% endif %}
