@@ -74,7 +74,7 @@ def items(request):
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
     response = requests.get(
         f'https://api.smitegame.com/smiteapi.svc/getitemsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/1').json()
-    test_img = ['Mail of Renewal (old)', '*Hand of the Gods', 'Stone of Fal (old)', '*War Flag', "Lono's Mask (deprecated)", 'S7 Staff of Myrddin', 'S8 Meditation Cloak', 'S8 Magic Shell',
+    test_img = ['Mail of Renewal (old)', "Manticore's Spikes", "Sphinx's Baubles", '*Hand of the Gods', 'Stone of Fal (old)', '*War Flag', "Lono's Mask (deprecated)", 'S7 Staff of Myrddin', 'S8 Meditation Cloak', 'S8 Magic Shell',
                 'z* S7 Sundering Spear', 'S8 Phantom Vei', 'S8 Meditation Cloak Upgrade', 'S8 Phantom Veil', 'S8 Phantom Veil Upgrade', 'S8 Magic Shell Upgrade', 'z* Sundering Spear Upgrade']
     context = {'res': response, 'test_img': test_img, 'sess': session_id}
     return render(request, 'smite/items.html', context)
