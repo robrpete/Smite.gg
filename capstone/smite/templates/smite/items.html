@@ -1,18 +1,27 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'smite/index.css' %}">
-    <title>Document</title>
-</head>
-<body>
-    <h4>{{sess}}</h4>
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Smite{% endblock %}
+
+{% block content %}
+<div class="page-title">
+    <h4>ITEMS</h4>
+</div>
+<div id="items">
     {% for r in res %}
-    <img src={{r.itemIcon_URL}} alt="">
-    <p>{{r.DeviceName}}</p>
+        {% if r.DeviceName not in test_img %}
+        <a class="item_link" :href=`#`>
+        <div class="item" >
+            <img src="{{r.itemIcon_URL}}" alt="">
+            <div class="item-details">
+            <div class="item-details-name">{{r.DeviceName}}</div>
+            <div class="item-details-title"></div>
+            </div>
+        </div>
+    </a>
+    {% endif %}
     {% endfor %}
-</body>
-</html>
+</div>
+{% endblock %}

@@ -1,15 +1,58 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'smite/index.css' %}">
-    <title>Document</title>
-</head>
-<body>
-    {{match}}<br/>
-    
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Smite{% endblock %}
+
+{% block content %}
+<div class="page-title">
+    <h4>Match</h4>
+</div>
+<div class="match_id">
+<h5>Id: {{match_id}}</h5>
+</div>
+<div class="match_stats_container">
+    <div class="stats_container">
+    <div class="match_title">
+        <div class="match_player_div">Player</div>
+        <div class="match_player_god">God</div>
+        <div class="match_player_kda">KDA</div>
+        <div class="match_player_s">Damage</div>
+    </div>
+    {% for m in match %}
+        {% if m.TaskForce == 1 %}
+            <div class="match_team_1">
+                {% if m.playerName != check_name %}
+                <div class="player_div"><a href="{% url 'smite:player' player=m.playerId name=m.playerName %}">{{m.playerName}}</a></div>
+                <div class="player_god">{{m.Reference_Name}}</div>
+                <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
+                <div class="player_s">{{m.Damage_Player}}</div>
+                {% else %}
+                <div class="player_div">{{m.playerName}}</div>
+                <div class="player_god">{{m.Reference_Name}}</div>
+                <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
+                <div class="player_s">{{m.Damage_Player}}</div>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if m.TaskForce == 2 %}
+            <div class="match_team_2">
+                {% if m.playerName != check_name %}
+                <div class="player_div"><a href="{% url 'smite:player' player=m.playerId name=m.playerName %}">{{m.playerName}}</a></div>
+                <div class="player_god">{{m.Reference_Name}}</div>
+                <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
+                <div class="player_s">{{m.Damage_Player}}</div>
+                {% else %}
+                <div class="player_div">{{m.playerName}}</div>
+                <div class="player_god">{{m.Reference_Name}}</div>
+                <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
+                <div class="player_s">{{m.Damage_Player}}</div>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+</div>
+{% endblock %}
+

@@ -4,29 +4,58 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="{% static 'smite/index.css' %}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>{% block title %}Smite.io{% endblock %}</title>
 </head>
 <body>
-  <nav>
-    <div id="title">
-      <h1>
-        Smite
-      </h1>
-    </div>
-    <div id="links">
-        <a href="{% url 'smite:index' %}">home</a>
-        <a href="{% url 'smite:gods' %}">gods</a>
-        <a href="{% url 'smite:items' %}">items</a>
-    </div>
-  </nav>
-  <main>
-    {% block content %}
+  <article>
+    <header class="header">
+      <nav class="navbar">
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+      </div>
+          <a href="{% url 'smite:index' %}" class="nav-logo">Smite.io</a>
+          <ul class="nav-menu">
+              <li class="nav-item">
+                  <a href="{% url 'smite:gods' %}" class="nav-link">Gods</a>
+              </li>
+              <li class="nav-item">
+                  <a href="{% url 'smite:items' %}" class="nav-link">Items</a>
+              </li>
+              <li class="nav-item">
+                  <a href="{% url 'smite:items' %}" class="nav-link">God/Item Builder</a>
+              </li>
+          </ul>
+          
+      </nav>
+</header>
+    <main>
+      {% block content %}
+      
+      {% endblock %}
+    </main>
     
-    {% endblock %}
-  </main>
-  <footer>
-    footer
-  </footer>
+  </article>
+  <script>
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+
+    hamburger.addEventListener("click", mobileMenu);
+
+    function mobileMenu() {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    }
+
+    
+  </script>
 </body>
 </html>

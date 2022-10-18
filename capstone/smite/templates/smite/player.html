@@ -1,27 +1,64 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'smite/index.css' %}">
-    <title>Document</title>
-</head>
-<body>
-    {{player.Name}}<br/>
-    {{player.HoursPlayed}}<br/>
-    {{player.Last_Login_Datetime}}<hr>
-    {{sess}}
-    <hr>
-    {{player}}
-    <hr>
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Smite{% endblock %}
+
+{% block content %}
+<div class="page-title">
+    <h4>{{name}}</h4>
+</div>
+<div class="match_stats_container">
+    <div class="player_stats">
+        <div class="history_title">
+            <div class="match_player_div">Hours</div>
+            <div class="match_player_god">Level</div>
+            <div class="match_player_kda">Last Seen</div>
+        </div>
+        <div class="history_detail">
+            <div class="history_title_1">{{player.HoursPlayed}}</div>
+            <div class="history_title_2">{{player.Level}}</div>
+            <div class="history_title_3">{{player.Last_Login_Datetime}}</div>
+            
+        </div>
+        <div class="history_title_two">
+            <div class="match_player_div">Platform</div>
+            <div class="match_player_god">Ranked Conquest</div>
+            <div class="match_player_kda">Ranked Joust</div>
+        </div>
+        <div class="history_detail_end">
+            <div class="history_title_1">{{player.Platform}}</div>
+            <div class="history_title_2">{{cmmr}}</div>
+            <div class="history_title_3">{{jmmr}}</div>
+            
+        </div>
+    </div>
+</div>
+<div class="match_history_title">
+    <h5>Match History</h5>
+</div>
+    <div class="match_stats_container">
+    <div class="match_history">
     {% for match in history %}
+    <div class="link_wrapper">
         <a href="{% url 'smite:get_match' match=match.Match %}">
-            <h4>{{match.Match_Time}}</h4>
-            <h4>{{match.God}}</h4>
-            {{match}}<hr>
+            
+                <div class="history_title">
+                    <div class="history_god">God</div>
+                    <div class="history_mode">Mode</div>
+                    <div class="history_kda">K/D</div>
+                </div>
+                <div class="history_detail_end">
+                    <div class="history_title_1">{{match.God}}</div>
+                    <div class="history_title_2">{{match.Map_Game}}</div>
+                    <div class="history_title_3">{{match.Kills}}/{{match.Deaths}}</div>
+                    
+                </div>
+            
         </a>
+    </div>
     {% endfor %}
-</body>
-</html>
+</div>
+</div>
+{% endblock %}

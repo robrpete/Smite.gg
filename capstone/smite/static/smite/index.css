@@ -1,7 +1,55 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+html, body{
+    width: 100%;
+    height: 100%;
+}
+
+/* ##################################################
+################   base.html      ##################
+################################################## */
+
+article {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+}
+
 body{
     color: white;
     background: #071325;
 }
+
+#title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#links a{
+    margin: 0.5rem;
+    text-decoration: none;
+    color: #a5976a;
+}
+
+footer{
+    background: black;
+}
+
+
+
+/* ##################################################
+################   player.html      ##################
+################################################## */
 
 #player_results{
     display: flex;
@@ -20,27 +68,701 @@ body{
     color: white;
 }
 
+.match_history a{
+    color: white;
+    text-decoration: none;
+    height: fit-content;
+    width: fit-content;
+}
+
+.history_title_1{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    padding: 0.5em;
+}
+
+.history_title_2{
+    grid-row: 1/2;
+    grid-column: 2/3;
+    padding: 0.5em;
+}
+
+.history_title_3{
+    grid-row: 1/2;
+    grid-column: 3/4;
+    padding: 0.5em;
+}
+
+.link_wrapper{
+    margin: 1rem;
+}
+
+.match_history_title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.match_history_title h5{
+    font-size: x-large;
+}
+
+.history_title{
+    background: #49422B;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    border-top-left-radius: 1em ;
+    border-top-right-radius: 1em ;
+}
+
+.history_title_two{
+    background: #49422B;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.history_god{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+    border-top-left-radius: 1em ;
+    padding-left: 0.5em;
+}
+
+.history_mode{
+    grid-row: 1/2;
+    grid-column: 2/3;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+}
+
+.history_kda{
+    grid-row: 1/2;
+    grid-column: 3/4;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+}
+
+.history_detail{
+    background: rgba(255, 0, 0, 0.288);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.history_detail_end{
+    background: rgba(255, 0, 0, 0.288);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+/* ##################################################
+################   gods.html      ##################
+################################################## */
+
 #gods{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 78rem;
+    padding-bottom: 3rem;
+    width: 100%;
 }
+
+
 
 .god{
     background: #050D1A;
-    height: fit-content;
-    width: fit-content;
-    padding: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 22rem;
+    width: 11.2rem;
     border-radius: 1em;
     border: 1px solid #49422B;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 0.5rem;
+    transition: transform .2s ease-in-out,-webkit-transform .2s ease-in-out;
 }
 
+
+
 .god img{
-    border-radius: 1em;
-    height: 18em;
-    width: 14em;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+
+.god:hover{
+    transform: scale3d(1.3,1.3,1);
+    z-index: 2;
+}
+
+.god-details{
+    background: #050D1A;
+    color: #ADA176;
+    height: 7rem;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.2rem;
+    border-top: 1px solid #49422B;
+}
+
+.god-details-name{
+    color: #fff;
+    font-family: "Penumbra Half Serif";
+    font-size: 1rem;
+    font-weight: 100;
+    letter-spacing: .3rem;
+    margin-bottom: 0.25em;
+    text-align: center;
+}
+
+.god-details-title{
+    text-rendering: optimizeLegibility;
+    color: #ada176;
+    font-size: 0.55rem;
+    font-weight: 100;
+    letter-spacing: .1rem;
+    line-height: 1.4rem;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+}
+
+.god_link{
+    text-decoration: none;
 }
 
 .pros{
-    font-size: x-small;
+    font-size: small;
+    padding-bottom: 0.25rem;
+    margin-top: 0.25em;
 }
+
+.select_filter{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+
+/* ##################################################
+################   search_results.html      ##################
+################################################## */
+
+.player-result-list{
+    list-style: none;
+}
+
+.player-result-list li{
+    text-decoration: none;
+}
+
+.player-results{
+    background: #050D1A;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 1em;
+    border: 1px solid #49422B;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 0.5rem;
+    padding: 1em;
+    transition: transform .2s ease-in-out,-webkit-transform .2s ease-in-out;
+}
+
+.player-results:hover{
+    transform: scale3d(1.1,1.1,1);
+    z-index: 2;
+}
+
+.search_results_players{
+    background: rgba(56, 53, 53, 0.521);
+    border-radius: 1em;
+}
+
+
+/* ##################################################
+################   Universal      ##################
+################################################## */
+
+.page-title{
+    display: flex;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+.page-title:before{
+    content: "";
+    flex: 1 1;
+    height: 1px;
+    margin: 1rem;
+}
+.page-title:before{
+    background: linear-gradient(270deg,#85784a 60%,transparent);
+    margin-left: 0;
+    margin-right: 2rem;
+}
+.page-title:after{
+    content: "";
+    flex: 1 1;
+    height: 1px;
+    margin: 1rem;
+}
+.page-title:after{
+    background: linear-gradient(90deg,#85784a 60%,transparent);
+    margin-left: 2rem;
+    margin-right: 0;
+}
+
+.page-title h4{
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 3.2rem;
+}
+
+
+/* ##################################################
+################   index.html      ##################
+################################################## */
+
+
+
+.index-background{
+    height: 100%;
+    background: url('https://www.f2p.com/wp-content/uploads/2014/05/SMITE-wallpaper-1.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.index-background-filter{
+    height: 100%;
+    background: linear-gradient(to bottom, #4f596321, #05111e25);
+}
+
+.form-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1em;
+}
+
+.form-container form{
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    border-radius: 1em;
+}
+
+.index input{
+    width: 60%;
+    height: 2em;
+    border-radius: 1em;
+    border: none;
+    padding-left: 1em;
+    border-style: none;
+    outline-width: 0;
+}
+
+.index form button{
+    height: 2em;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border-style: none;
+    padding: 0.4em;
+    background: white;
+    cursor: pointer;
+}
+
+
+
+/* ##################################################
+################   nav      ##################
+################################################## */
+
+
+.header{
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    border-bottom: 2px solid #49422B;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    box-shadow: 0px 8px 15px 2px black;
+    background: #05111E;
+    border-bottom: 2px solid #49422B;
+}
+
+.navbar a{
+    text-decoration: none;
+}
+
+.navbar li{
+    list-style: none;
+}
+
+.hamburger {
+    display: none;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: white;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 5rem;
+}
+
+.nav-link{
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: white;
+}
+
+.nav-link:hover{
+    color: #49422B;
+    -webkit-text-stroke: 0.2px white;
+}
+
+.nav-logo {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(to right, white, #85784a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Nanum Myeongjo', serif;
+    margin-left: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 5rem;
+        flex-direction: column;
+        background-color: #fff;
+        width: 100%;
+        border-radius: 10px;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-menu.active {
+        background: linear-gradient(to right, black, #050D1A);
+        left: 0;
+        width: 40%;
+    }
+
+    .nav-item {
+        margin: 2.5rem 0;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+
+/* ##################################################
+################   items.html      ##################
+################################################## */
+
+
+
+
+#items{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 78rem;
+    padding-bottom: 3rem;
+    width: 100%;
+}
+
+
+
+.item{
+    background: #050D1A;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 10rem;
+    width: 7rem;
+    border-radius: 1em;
+    border: 1px solid #49422B;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 0.5rem;
+    transition: transform .2s ease-in-out,-webkit-transform .2s ease-in-out;
+}
+
+
+
+.item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+
+.item:hover{
+    transform: scale3d(1.3,1.3,1);
+    z-index: 2;
+}
+
+.item-details{
+    background: #050D1A;
+    color: #ADA176;
+    height: 4rem;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.2rem;
+    border-top: 1px solid #49422B;
+}
+
+.item-details-name{
+    color: #fff;
+    font-family: "Penumbra Half Serif";
+    font-size: 0.8rem;
+    font-weight: 100;
+    letter-spacing: .1rem;
+    text-align: center;
+}
+
+.item-details-title{
+    text-rendering: optimizeLegibility;
+    color: #ada176;
+    font-size: 0.55rem;
+    font-weight: 100;
+    letter-spacing: .1rem;
+    line-height: 1.4rem;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+}
+
+.item_link{
+    text-decoration: none;
+}
+
+.pros{
+    font-size: small;
+    padding-bottom: 0.25rem;
+    margin-top: 0.25em;
+}
+
+
+
+
+
+/* ##################################################
+################   skins.html      ##################
+################################################## */
+
+
+.skin img{
+    height: 16rem;
+    width: 12rem;
+}
+
+
+
+/* ##################################################
+################   match.html      ##################
+################################################## */
+
+
+.match_id{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.match_stats_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 78rem;
+    padding-bottom: 3rem;
+    width: 90%;
+}
+
+.stats_container{
+    width: fit-content;
+    border: 1px solid #a78310;
+    border-top-left-radius: 1em ;
+    border-top-right-radius: 1em ;
+}
+
+.match_title{
+    background: #49422B;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    border-top-left-radius: 1em ;
+    border-top-right-radius: 1em ;
+}
+
+.match_player_div{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+    border-top-left-radius: 1em ;
+    padding-left: 0.5em;
+}
+
+.match_player_god{
+    grid-row: 1/2;
+    grid-column: 2/3;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+}
+
+.match_player_kda{
+    grid-row: 1/2;
+    grid-column: 3/4;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+}
+
+.match_player_s{
+    grid-row: 1/2;
+    grid-column: 4/5;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+    border-top-right-radius: 1em ;
+}
+
+.match_team_1{
+    background: rgba(255, 0, 0, 0.288);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+
+
+.match_team_2{
+    background: rgba(0, 128, 0, 0.301);
+    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.player_div{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    border-top: 1px solid #050D1A;
+    border-left: 1px solid #050D1A;
+    border-bottom: 1px solid #050D1A;
+    padding: 0.2em;
+}
+
+.player_div a{
+    color: white;
+}
+
+.player_god{
+    grid-row: 1/2;
+    grid-column: 2/3;
+    border-top: 1px solid #050D1A;
+    border-bottom: 1px solid #050D1A;
+    padding: 0.2em;
+    padding-left: 0.4em;
+}
+
+.player_kda{
+    grid-row: 1/2;
+    grid-column: 3/4;
+    border-top: 1px solid #050D1A;
+    border-bottom: 1px solid #050D1A;
+    padding: 0.2em;
+}
+
+.player_s{
+    grid-row: 1/2;
+    grid-column: 4/5;
+    border-top: 1px solid #050D1A;
+    border-right: 1px solid #050D1A;
+    border-bottom: 1px solid #050D1A;
+    padding: 0.2em;
+}
+
+/* https://cdn.wallpapersafari.com/32/53/dzLrGv.png
+https://cdn.wallpapersafari.com/47/87/CwZjQe.png
+https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/47cdae35-f2aa-492c-9d0c-b3d95677e89c/d8cm0tj-f6e95584-b71b-4fe0-bdbe-6a52c2700c6c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQ3Y2RhZTM1LWYyYWEtNDkyYy05ZDBjLWIzZDk1Njc3ZTg5Y1wvZDhjbTB0ai1mNmU5NTU4NC1iNzFiLTRmZTAtYmRiZS02YTUyYzI3MDBjNmMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.h4acYBlyzPRh2RcDnn1ho3ZGCGVzFSqSWGfsd2XpKkA
+https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700801479.jpg
+https://browsecat.net/sites/default/files/smite-wallpapers-79945-791176-7909606.png */

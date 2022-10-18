@@ -6,16 +6,48 @@
 {% block title %}Smite{% endblock %}
 
 {% block content %}
-<h4>{{sess}}</h4>
+<div id="gods-page">
+<div class="page-title">
+    <h4>GODS</h4>
+</div>
+<div class="select_filter">
+<select name="filter" id="filter" v-model="filter">
+    <option for="All">All</option>
+    <option for="Mage">Mage</option>
+    <option for="Assassin">Assassin</option>
+    <option for="Hunter">Hunter</option>
+    <option for="Warrior">Warrior</option>
+    <option for="Guardian">Guardian</option>
+</select>
+</div>
 <div id="gods">
     <div v-for="god in gods">
-        <div class="god">
+        <div v-if="god.Roles == filter">
+        <a class="god_link" :href=`/smite/skins/${god.Name}/${god.id}/`>
+        <div class="god" >
             <img :src="god.godCard_URL" alt="">
-            <p>[[god.Name]]</p>
-            <p>[[god.Title]]</p><hr>
-            <p class="pros">[[god.Pros]]</p>
+            <div class="god-details">
+            <div class="god-details-name">[[god.Name]]</div>
+            <div class="god-details-title">[[god.Title]]</div>
+            <p class="pros">[[god.Roles]] [[god.Type]]</p>
+            </div>
         </div>
+    </a>
     </div>
+    <div v-if="filter == 'All'">
+        <a class="god_link" :href=`/smite/skins/${god.Name}/${god.id}/`>
+        <div class="god" >
+            <img :src="god.godCard_URL" alt="">
+            <div class="god-details">
+            <div class="god-details-name">[[god.Name]]</div>
+            <div class="god-details-title">[[god.Title]]</div>
+            <p class="pros">[[god.Roles]] [[god.Type]]</p>
+            </div>
+        </div>
+    </a>
+    </div>
+</div>
+</div>
 </div>
 
 {{ gods|json_script:'all-gods' }}
@@ -23,11 +55,14 @@
 
     const getGods = JSON.parse(document.getElementById('all-gods').textContent)
     new Vue({
-        el: "#gods",
+        el: "#gods-page", 
         delimiters: ['[[',']]'],
         data: {
             gods: getGods,
-        }
+            filter: 'All',
+            godsByRole: [],
+        },
+        
     })
 </script>
 {% endblock %}

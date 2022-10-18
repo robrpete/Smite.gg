@@ -13,11 +13,11 @@ dev_id = data['DEV_ID']
 auth_key = data['AUTH_KEY']
 
 # Create your views here.
-date_utc = datetime.utcnow()
-date = date_utc.strftime('%Y%m%d%H%M%S')
 
 
 def index(request):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
+
     session_id = Session.objects.get(getter_id=1)
     print('sess id', session_id)
     signature = f'{dev_id}testsession{auth_key}{date}'
@@ -31,6 +31,7 @@ def index(request):
         signature_hashed = hashlib.md5(signature.encode()).hexdigest()
         response = requests.get(
             f'https://api.smitegame.com/smiteapi.svc/createsessionjson/{dev_id}/{signature_hashed}/{date}').json()
+
         Session.objects.all().delete()
         sess = Session(getter_id=1, session_id=response['session_id'])
         sess.save()
@@ -45,31 +46,37 @@ def index(request):
 
 
 def gods(request):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     day = datetime.now()
     print(day.weekday(), day.hour, day.minute)
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getgods{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
-    if day.weekday() == 4 and day.hour == 16 and day.minute == 46:
+    if day.weekday() == 1 and day.hour == 14 and day.minute == 31:
         God.objects.all().delete()
         response = requests.get(
             f'https://api.smitegame.com/smiteapi.svc/getgodsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/1').json()
         save_response_to_gods = God(gods=response)
         save_response_to_gods.save()
+        print('updated gods')
     else:
         response = God.objects.first().gods
+        print('gods from database')
 
     context = {'gods': response, 'sess': session_id}
     return render(request, 'smite/gods.html', context)
 
 
 def items(request):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getitems{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
     response = requests.get(
         f'https://api.smitegame.com/smiteapi.svc/getitemsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/1').json()
-    context = {'res': response, 'sess': session_id}
+    test_img = ['Mail of Renewal (old)', "Manticore's Spikes", "Sphinx's Baubles", '*Hand of the Gods', 'Stone of Fal (old)', '*War Flag', "Lono's Mask (deprecated)", 'S7 Staff of Myrddin', 'S8 Meditation Cloak', 'S8 Magic Shell',
+                'z* S7 Sundering Spear', 'S8 Phantom Vei', 'S8 Meditation Cloak Upgrade', 'S8 Phantom Veil', 'S8 Phantom Veil Upgrade', 'S8 Magic Shell Upgrade', 'z* Sundering Spear Upgrade']
+    context = {'res': response, 'test_img': test_img, 'sess': session_id}
     return render(request, 'smite/items.html', context)
 
 
@@ -79,6 +86,7 @@ def search_player(request):
 
 
 def search_results(request, player):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}searchplayers{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
@@ -97,6 +105,7 @@ def search_results(request, player):
 
 
 def player(request, player, name):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getplayer{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
@@ -107,20 +116,28 @@ def player(request, player, name):
     signature_h = hashlib.md5(signature.encode()).hexdigest()
     response_history = requests.get(
         f'https://api.smitegame.com/smiteapi.svc/getmatchhistoryjson/{dev_id}/{signature_h}/{session_id}/{date}/{player}').json()
-
+    conquest_mmr = int(response[0]['Rank_Stat_Conquest_Controller'])
+    joust_mmr = int(response[0]['Rank_Stat_Joust_Controller'])
+    player_name = response[0]['Name']
+    if ']' in player_name:
+        player_name = player_name.partition(']')[2]
+    print(player_name)
     context = {'player': response[0],
-               'history': response_history, 'sess': session_id}
+               'history': response_history, 'name': player_name, 'jmmr': joust_mmr, 'cmmr': conquest_mmr, 'sess': session_id}
     return render(request, 'smite/player.html', context)
 
 
 def get_match(request, match):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getmatchdetails{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
     response = requests.get(
         f'https://api.smitegame.com/smiteapi.svc/getmatchdetailsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{match}').json()
-
-    context = {'match': response, 'sess': session_id}
+    match_id = match
+    check_name = ''
+    context = {'match': response, 'match_id': match_id,
+               'check_name': check_name, 'sess': session_id}
     return render(request, 'smite/match.html', context)
 
 
@@ -136,6 +153,7 @@ def god(request, r_Name):
 
 
 def check(request):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getdataused{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
@@ -144,3 +162,16 @@ def check(request):
 
     context = {'res': response[0], 'sess': session_id}
     return render(request, 'smite/checkapi.html', context)
+
+
+def skins(request, name, id):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
+    session_id = Session.objects.get(getter_id=1)
+    signature = f'{dev_id}getgodskins{auth_key}{date}'
+    signature_hashed = hashlib.md5(signature.encode()).hexdigest()
+    response = requests.get(
+        f'https://api.smitegame.com/smiteapi.svc/getgodskinsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{id}/1').json()
+    skin_list_exclude = ['Diamond', 'Legendary',
+                         'Shadow', 'Happy Little Painter']
+    context = {'skins': response, 'name': name, 'skin_list': skin_list_exclude}
+    return render(request, 'smite/skins.html', context)
