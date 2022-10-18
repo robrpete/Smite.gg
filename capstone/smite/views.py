@@ -19,7 +19,7 @@ def index(request):
     date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
 
     session_id = Session.objects.get(getter_id=1)
-    print('sess id', session_id)
+
     signature = f'{dev_id}testsession{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
     test_response = requests.get(
@@ -35,7 +35,6 @@ def index(request):
         Session.objects.all().delete()
         sess = Session(getter_id=1, session_id=response['session_id'])
         sess.save()
-        print(sess)
 
     else:
         response = test_response
@@ -121,7 +120,7 @@ def player(request, player, name):
     player_name = response[0]['Name']
     if ']' in player_name:
         player_name = player_name.partition(']')[2]
-    print(player_name)
+
     context = {'player': response[0],
                'history': response_history, 'name': player_name, 'jmmr': joust_mmr, 'cmmr': conquest_mmr, 'sess': session_id}
     return render(request, 'smite/player.html', context)
