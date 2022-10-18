@@ -119,7 +119,9 @@ def player(request, player, name):
     conquest_mmr = int(response[0]['Rank_Stat_Conquest_Controller'])
     joust_mmr = int(response[0]['Rank_Stat_Joust_Controller'])
     player_name = response[0]['Name']
-    player_name = player_name.partition(']')[2]
+    if ']' in player_name:
+        player_name = player_name.partition(']')[2]
+    print(player_name)
     context = {'player': response[0],
                'history': response_history, 'name': player_name, 'jmmr': joust_mmr, 'cmmr': conquest_mmr, 'sess': session_id}
     return render(request, 'smite/player.html', context)
