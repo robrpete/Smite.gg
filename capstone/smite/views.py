@@ -13,11 +13,11 @@ dev_id = data['DEV_ID']
 auth_key = data['AUTH_KEY']
 
 # Create your views here.
-date_utc = datetime.utcnow()
-date = date_utc.strftime('%Y%m%d%H%M%S')
 
 
 def index(request):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
+
     session_id = Session.objects.get(getter_id=1)
     print('sess id', session_id)
     signature = f'{dev_id}testsession{auth_key}{date}'
@@ -46,12 +46,13 @@ def index(request):
 
 
 def gods(request):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     day = datetime.now()
     print(day.weekday(), day.hour, day.minute)
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getgods{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
-    if day.weekday() == 4 and day.hour == 16 and day.minute == 46:
+    if day.weekday() == 1 and day.hour == 00 and day.minute == 46:
         God.objects.all().delete()
         response = requests.get(
             f'https://api.smitegame.com/smiteapi.svc/getgodsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/1').json()
@@ -59,12 +60,14 @@ def gods(request):
         save_response_to_gods.save()
     else:
         response = God.objects.first().gods
+        print('gods from database')
 
     context = {'gods': response, 'sess': session_id}
     return render(request, 'smite/gods.html', context)
 
 
 def items(request):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getitems{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
@@ -82,6 +85,7 @@ def search_player(request):
 
 
 def search_results(request, player):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}searchplayers{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
@@ -100,6 +104,7 @@ def search_results(request, player):
 
 
 def player(request, player, name):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getplayer{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
@@ -117,13 +122,16 @@ def player(request, player, name):
 
 
 def get_match(request, match):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getmatchdetails{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
     response = requests.get(
         f'https://api.smitegame.com/smiteapi.svc/getmatchdetailsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{match}').json()
     match_id = match
-    context = {'match': response, 'match_id': match_id, 'sess': session_id}
+    check_name = ''
+    context = {'match': response, 'match_id': match_id,
+               'check_name': check_name, 'sess': session_id}
     return render(request, 'smite/match.html', context)
 
 
@@ -139,6 +147,7 @@ def god(request, r_Name):
 
 
 def check(request):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getdataused{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
@@ -150,6 +159,7 @@ def check(request):
 
 
 def skins(request, name, id):
+    date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getgodskins{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()

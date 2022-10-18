@@ -23,25 +23,31 @@
     {% for m in match %}
         {% if m.TaskForce == 1 %}
             <div class="match_team_1">
-                {% if m.playerName != null %}
-                <div class="player_div">{{m.playerName}}</div>
+                {% if m.playerName != check_name %}
+                <div class="player_div"><a href="{% url 'smite:player' player=m.playerId name=m.playerName %}">{{m.playerName}}</a></div>
                 <div class="player_god">{{m.Reference_Name}}</div>
                 <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
                 <div class="player_s">{{m.Damage_Player}}</div>
                 {% else %}
-                <div class="player">private</div>
+                <div class="player_div">{{m.playerName}}</div>
+                <div class="player_god">{{m.Reference_Name}}</div>
+                <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
+                <div class="player_s">{{m.Damage_Player}}</div>
                 {% endif %}
             </div>
         {% endif %}
         {% if m.TaskForce == 2 %}
             <div class="match_team_2">
-                {% if m.playerName != null %}
-                <div class="player_div">{{m.playerName}}</div>
+                {% if m.playerName != check_name %}
+                <div class="player_div"><a href="{% url 'smite:player' player=m.playerId name=m.playerName %}">{{m.playerName}}</a></div>
                 <div class="player_god">{{m.Reference_Name}}</div>
                 <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
                 <div class="player_s">{{m.Damage_Player}}</div>
                 {% else %}
-                <div class="player">private</div>
+                <div class="player_div">{{m.playerName}}</div>
+                <div class="player_god">{{m.Reference_Name}}</div>
+                <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
+                <div class="player_s">{{m.Damage_Player}}</div>
                 {% endif %}
             </div>
         {% endif %}
