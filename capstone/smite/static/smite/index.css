@@ -68,6 +68,92 @@ footer{
     color: white;
 }
 
+.match_history a{
+    color: white;
+    text-decoration: none;
+    height: fit-content;
+    width: fit-content;
+}
+
+.history_title_1{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    padding: 0.5em;
+}
+
+.history_title_2{
+    grid-row: 1/2;
+    grid-column: 2/3;
+    padding: 0.5em;
+}
+
+.history_title_3{
+    grid-row: 1/2;
+    grid-column: 3/4;
+    padding: 0.5em;
+}
+
+.link_wrapper{
+    margin: 1rem;
+}
+
+.match_history_title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.match_history_title h5{
+    font-size: x-large;
+}
+
+.history_title{
+    background: #49422B;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    border-top-left-radius: 1em ;
+    border-top-right-radius: 1em ;
+}
+
+.history_god{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+    border-top-left-radius: 1em ;
+    padding-left: 0.5em;
+}
+
+.history_mode{
+    grid-row: 1/2;
+    grid-column: 2/3;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+}
+
+.history_kda{
+    grid-row: 1/2;
+    grid-column: 3/4;
+    border-bottom: 1px solid #a78310;
+    padding: 0.2em;
+}
+
+.history_detail{
+    background: rgba(255, 0, 0, 0.288);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
 /* ##################################################
 ################   gods.html      ##################
 ################################################## */

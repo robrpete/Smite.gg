@@ -6,18 +6,48 @@
 {% block title %}Smite{% endblock %}
 
 {% block content %}
-{{player.Name}}<br/>
-    {{player.HoursPlayed}}<br/>
-    {{player.Last_Login_Datetime}}<hr>
-    {{sess}}
-    <hr>
-    {{player}}
-    <hr>
+<div class="page-title">
+    <h4>{{player.Name}}</h4>
+</div>
+<div class="match_stats_container">
+    <div class="player_stats">
+        <div class="history_title">
+            <div class="match_player_div">Hours</div>
+            <div class="match_player_god">Level</div>
+            <div class="match_player_kda">Last Seen</div>
+        </div>
+        <div class="history_detail">
+            <div class="history_title_1">{{player.HoursPlayed}}</div>
+            <div class="history_title_2">{{player.Level}}</div>
+            <div class="history_title_3">{{player.Last_Login_Datetime}}</div>
+            
+        </div>
+    </div>
+</div>
+<div class="match_history_title">
+    <h5>Match History</h5>
+</div>
+    <div class="match_stats_container">
+    <div class="match_history">
     {% for match in history %}
+    <div class="link_wrapper">
         <a href="{% url 'smite:get_match' match=match.Match %}">
-            <h4>{{match.Match_Time}}</h4>
-            <h4>{{match.God}}</h4>
-            {{match}}<hr>
+            
+                <div class="history_title">
+                    <div class="history_god">God</div>
+                    <div class="history_mode">Mode</div>
+                    <div class="history_kda">KDA</div>
+                </div>
+                <div class="history_detail">
+                    <div class="history_title_1">{{match.God}}</div>
+                    <div class="history_title_2">{{match.Map_Game}}</div>
+                    <div class="history_title_3">{{match.Kills}}/{{match.Deaths}}/{{m.Assists}}</div>
+                    
+                </div>
+            
         </a>
+    </div>
     {% endfor %}
+</div>
+</div>
 {% endblock %}
