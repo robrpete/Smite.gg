@@ -7,13 +7,15 @@
 
 {% block content %}
 <div class="index-background">
-    <div class="index-background-filter">
-<div class="page-title">
+    
+<div class="page-title-index">
     <h4></h4>
 </div>
 
         
         <div class="index">
+            <h1 class="under">Search Player</h1>
+            <h1 class="over">Search Player</h1>
             <div class="form-container">
             <form action="{% url 'smite:search_player' %}" method="post">
                 {% csrf_token %}
@@ -24,8 +26,7 @@
                 
             </form>
         </div>
-            {{res}}
+            
         </div>
-    </div>
 </div>
 {% endblock %}
