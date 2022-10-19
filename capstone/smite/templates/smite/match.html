@@ -29,7 +29,7 @@
                 <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
                 <div class="player_s">{{m.Damage_Player}}</div>
                 {% else %}
-                <div class="player_div">{{m.playerName}}</div>
+                <div class="player_div">*PA*</div>
                 <div class="player_god">{{m.Reference_Name}}</div>
                 <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
                 <div class="player_s">{{m.Damage_Player}}</div>
@@ -44,7 +44,7 @@
                 <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
                 <div class="player_s">{{m.Damage_Player}}</div>
                 {% else %}
-                <div class="player_div">{{m.playerName}}</div>
+                <div class="player_div">*PA*</div>
                 <div class="player_god">{{m.Reference_Name}}</div>
                 <div class="player_kda">{{m.Kills_Player}}/{{m.Deaths}}/{{m.Assists}}</div>
                 <div class="player_s">{{m.Damage_Player}}</div>
@@ -52,7 +52,9 @@
             </div>
         {% endif %}
     {% endfor %}
+    
 </div>
+<p>*PA*: Private account names are hidden.</p>
 </div>
 {% endblock %}
 
