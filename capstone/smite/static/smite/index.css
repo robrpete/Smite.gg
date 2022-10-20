@@ -445,9 +445,15 @@ footer{
     border-top-right-radius: 1em;
     border-bottom-right-radius: 1em;
     border-style: none;
-    padding: 0.4em;
+    padding-top: 0.2em;
+    padding-right: 0.5em;
     background: white;
     cursor: pointer;
+}
+
+.index form img{
+    height: 20px;
+    width: 20px;
 }
 
 
@@ -741,7 +747,7 @@ footer{
 .match_id{
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .match_stats_container{

@@ -3,7 +3,7 @@ from smite.models import Skin, Session, God
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
 import hashlib
 import json
@@ -73,6 +73,7 @@ def items(request):
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
     response = requests.get(
         f'https://api.smitegame.com/smiteapi.svc/getitemsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/1').json()
+    print(response)
     test_img = ['Mail of Renewal (old)', "Manticore's Spikes", "Sphinx's Baubles", '*Hand of the Gods', 'Stone of Fal (old)', '*War Flag', "Lono's Mask (deprecated)", 'S7 Staff of Myrddin', 'S8 Meditation Cloak', 'S8 Magic Shell',
                 'z* S7 Sundering Spear', 'S8 Phantom Vei', 'S8 Meditation Cloak Upgrade', 'S8 Phantom Veil', 'S8 Phantom Veil Upgrade', 'S8 Magic Shell Upgrade', 'z* Sundering Spear Upgrade']
     context = {'res': response, 'test_img': test_img, 'sess': session_id}
@@ -135,7 +136,9 @@ def get_match(request, match):
         f'https://api.smitegame.com/smiteapi.svc/getmatchdetailsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/{match}').json()
     match_id = match
     check_name = ''
-    context = {'match': response, 'match_id': match_id,
+    get_time = response[0]['Time_In_Match_Seconds']
+    time = timedelta(seconds=get_time)
+    context = {'match': response, 'time': time, 'match_id': match_id,
                'check_name': check_name, 'sess': session_id}
     return render(request, 'smite/match.html', context)
 
