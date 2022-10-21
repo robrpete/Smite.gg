@@ -25,3 +25,7 @@ class Session(models.Model):
 
 class God(models.Model):
     gods = models.JSONField()
+
+
+class Item(models.Model):
+    items = models.JSONField()

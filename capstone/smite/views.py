@@ -1,5 +1,5 @@
 import asyncio
-from smite.models import Skin, Session, God
+from smite.models import Skin, Session, God, Item
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -47,7 +47,6 @@ def index(request):
 def gods(request):
     date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     day = datetime.now()
-    print(day.weekday(), day.hour, day.minute)
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getgods{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
@@ -68,12 +67,22 @@ def gods(request):
 
 def items(request):
     date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
+    day = datetime.now()
     session_id = Session.objects.get(getter_id=1)
     signature = f'{dev_id}getitems{auth_key}{date}'
     signature_hashed = hashlib.md5(signature.encode()).hexdigest()
-    response = requests.get(
-        f'https://api.smitegame.com/smiteapi.svc/getitemsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/1').json()
-    print(response)
+
+    if day.weekday() == 1 and day.hour == 14 and day.minute == 31:
+        Item.objects.all().delete()
+        response = requests.get(
+            f'https://api.smitegame.com/smiteapi.svc/getitemsjson/{dev_id}/{signature_hashed}/{session_id}/{date}/1').json()
+        save_response_to_items = Item(items=response)
+        save_response_to_items.save()
+        print('updated items')
+    else:
+        response = Item.objects.first().items
+        print('items from database')
+
     test_img = ['Mail of Renewal (old)', "Manticore's Spikes", "Sphinx's Baubles", '*Hand of the Gods', 'Stone of Fal (old)', '*War Flag', "Lono's Mask (deprecated)", 'S7 Staff of Myrddin', 'S8 Meditation Cloak', 'S8 Magic Shell',
                 'z* S7 Sundering Spear', 'S8 Phantom Vei', 'S8 Meditation Cloak Upgrade', 'S8 Phantom Veil', 'S8 Phantom Veil Upgrade', 'S8 Magic Shell Upgrade', 'z* Sundering Spear Upgrade']
     context = {'res': response, 'test_img': test_img, 'sess': session_id}

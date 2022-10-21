@@ -10,18 +10,72 @@
     <h4>ITEMS</h4>
 </div>
 <div id="items">
-    {% for r in res %}
-        {% if r.DeviceName not in test_img %}
-        <a class="item_link" :href=`#`>
-        <div class="item" >
-            <img src="{{r.itemIcon_URL}}" alt="">
-            <div class="item-details">
-            <div class="item-details-name">{{r.DeviceName}}</div>
-            <div class="item-details-title"></div>
-            </div>
+    <div class="select_filter">
+        <select name="filter" id="filter" v-model="filter">
+            <option for="All">All</option>
+            <option for="MagicalPower">Magical Power</option>
+            <option for="PhysicalPower">Physical Power</option>
+            <option for="MagicalProtection">Magical Protection</option>
+            <option for="PhysicalProtection">Physical Protection</option>
+            <option for="MagicalPenetration">Magical Penetration</option>
+            <option for="PhysicalPenetration">Physical Penetration</option>
+        </select>
         </div>
-    </a>
-    {% endif %}
-    {% endfor %}
+    <div v-for="item in sortItem">
+        <a class="item_link" :href=`#`>
+            <div class="item" >
+                <img :src="item.itemIcon_URL" alt="">
+                <div class="item-details">
+                <div class="item-details-name">[[item.DeviceName]]</div>
+                <div class="item-details-title"></div>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>
+</div>
+
+{{ res|json_script:'all-items' }}
+{{ test_img|json_script:'test_img' }}
+<script>
+
+    const getItems = JSON.parse(document.getElementById('all-items').textContent)
+    const test_img = JSON.parse(document.getElementById('test_img').textContent)
+    new Vue({
+        el: "#items", 
+        delimiters: ['[[',']]'],
+        data: {
+            items: [],
+            testImgList: test_img,
+            filter: 'All',
+            itemsByType: [],
+        },
+        mounted(){
+            this.getItemsWithImg()
+        },
+        methods: {
+            getItemsWithImg(){
+                getItems.forEach(e => {
+                    if(this.testImgList.indexOf(e.DeviceName) === -1){
+                        this.items.push(e)
+                    }
+                });
+            },
+
+        },
+        computed:{
+            sortItem(){
+                var item = this.items.filter((e) => {
+                    if(this.filter == 'All'){
+                        return true
+                    }else if(e.ItemDescription.Menuitems[1]){
+                        if(e.ItemDescription.Menuitems[0].Description.includes(this.filter) || e.ItemDescription.Menuitems[1].Description.includes(this.filter)) 
+                            return true
+                    }
+                })
+                return item
+            }
+        }
+    })
+</script>
 {% endblock %}
