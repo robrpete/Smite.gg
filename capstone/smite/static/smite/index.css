@@ -819,8 +819,6 @@ footer{
     grid-template-rows: 1fr;
 }
 
-
-
 .match_team_2{
     background: rgba(0, 128, 0, 0.301);
     display: flex;
